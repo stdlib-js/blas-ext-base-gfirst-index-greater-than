@@ -45,38 +45,32 @@ limitations under the License.
 
 <!-- Package usage documentation. -->
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/blas-ext-base-gfirst-index-greater-than
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
-To use in Observable,
-
 ```javascript
-gfirstIndexGreaterThan = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/blas-ext-base-gfirst-index-greater-than@umd/browser.js' )
-```
-
-To vendor stdlib functionality and avoid installing dependency trees for Node.js, you can use the UMD server build:
-
-```javascript
-var gfirstIndexGreaterThan = require( 'path/to/vendor/umd/blas-ext-base-gfirst-index-greater-than/index.js' )
-```
-
-To include the bundle in a webpage,
-
-```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/blas-ext-base-gfirst-index-greater-than@umd/browser.js"></script>
-```
-
-If no recognized module system is present, access bundle contents via the global scope:
-
-```html
-<script type="text/javascript">
-(function () {
-    window.gfirstIndexGreaterThan;
-})();
-</script>
+var gfirstIndexGreaterThan = require( '@stdlib/blas-ext-base-gfirst-index-greater-than' );
 ```
 
 #### gfirstIndexGreaterThan( N, x, strideX, y, strideY )
@@ -94,9 +88,9 @@ var idx = gfirstIndexGreaterThan( x.length, x, 1, y, 1 );
 The function has the following parameters:
 
 -   **N**: number of indexed elements.
--   **x**: first input array.
+-   **x**: first input [`Array`][mdn-array] or [`typed array`][mdn-typed-array].
 -   **strideX**: stride length for `x`.
--   **y**: second input array.
+-   **y**: second input [`Array`][mdn-array] or [`typed array`][mdn-typed-array].
 -   **strideY**: stride length for `y`.
 
 If the function is unable to find an element in `x` which is greater than a corresponding element in `y`, the function returns `-1`.
@@ -132,7 +126,7 @@ var y0 = new Float64Array( [ 9.0, 9.0, 0.0, 9.0 ] );
 var x1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
 var y1 = new Float64Array( y0.buffer, y0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
 
-// Find index...
+// Find index:
 var idx = gfirstIndexGreaterThan( 2, x1, 1, y1, 1 );
 // returns 1
 ```
@@ -180,7 +174,8 @@ var idx = gfirstIndexGreaterThan.ndarray( 3, x, 1, x.length-3, y, 1, y.length-3 
 
 ## Notes
 
--   When comparing elements, the function checks whether an element in `x` is greater than a corresponding element in `y` using the greater-than operator `>`. As a consequence, comparisons involving `NaN` always evaluate to `false`.
+-   If `N <= 0`, both functions return `-1`.
+-   When comparing elements, the functions use the greater-than operator `>`. As a consequence, comparisons involving `NaN` always evaluate to `false`, and `-0` and `+0` are considered the same.
 -   Both functions support array-like objects having getter and setter accessors for array element access (e.g., [`@stdlib/array-base/accessor`][@stdlib/array/base/accessor]).
 
 </section>
@@ -195,14 +190,9 @@ var idx = gfirstIndexGreaterThan.ndarray( 3, x, 1, x.length-3, y, 1, y.length-3 
 
 <!-- eslint no-undef: "error" -->
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-array-discrete-uniform@umd/browser.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/blas-ext-base-gfirst-index-greater-than@umd/browser.js"></script>
-<script type="text/javascript">
-(function () {
+```javascript
+var discreteUniform = require( '@stdlib/random-array-discrete-uniform' );
+var gfirstIndexGreaterThan = require( '@stdlib/blas-ext-base-gfirst-index-greater-than' );
 
 var x = discreteUniform( 10, 0, 10, {
     'dtype': 'generic'
@@ -216,11 +206,6 @@ console.log( y );
 
 var idx = gfirstIndexGreaterThan( x.length, x, 1, y, 1 );
 console.log( idx );
-
-})();
-</script>
-</body>
-</html>
 ```
 
 </section>
@@ -261,11 +246,6 @@ For more information on the project, filing bug reports and feature requests, an
 [![Chat][chat-image]][chat-url]
 
 ---
-
-## License
-
-See [LICENSE][stdlib-license].
-
 
 ## Copyright
 
@@ -313,11 +293,11 @@ Copyright &copy; 2016-2026. The Stdlib [Authors][stdlib-authors].
 [esm-readme]: https://github.com/stdlib-js/blas-ext-base-gfirst-index-greater-than/blob/esm/README.md
 [branches-url]: https://github.com/stdlib-js/blas-ext-base-gfirst-index-greater-than/blob/main/branches.md
 
-[stdlib-license]: https://raw.githubusercontent.com/stdlib-js/blas-ext-base-gfirst-index-greater-than/main/LICENSE
+[mdn-array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 
 [mdn-typed-array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 
-[@stdlib/array/base/accessor]: https://github.com/stdlib-js/array-base-accessor/tree/umd
+[@stdlib/array/base/accessor]: https://github.com/stdlib-js/array-base-accessor
 
 </section>
 
