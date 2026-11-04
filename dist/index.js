@@ -1,9 +1,43 @@
-"use strict";var q=function(e,r){return function(){try{return r||e((r={exports:{}}).exports,r),r.exports}catch(a){throw (r=0, a)}};};var l=q(function(A,g){
-function P(e,r,a,s,t,v,f){var n,u,o,c,i,y,x;for(n=r.data,u=t.data,o=r.accessors[0],c=t.accessors[0],i=s,y=f,x=0;x<e;x++){if(o(n,i)>c(u,y))return x;i+=a,y+=v}return-1}g.exports=P
-});var d=q(function(B,b){
-var p=require('@stdlib/array-base-arraylike2object/dist'),j=l();function k(e,r,a,s,t,v,f){var n,u,o,c,i;if(e<=0)return-1;if(o=p(r),c=p(t),o.accessorProtocol||c.accessorProtocol)return j(e,o,a,s,c,v,f);for(n=s,u=f,i=0;i<e;i++){if(r[n]>t[u])return i;n+=a,u+=v}return-1}b.exports=k
-});var I=q(function(C,G){
-var h=require('@stdlib/strided-base-stride2offset/dist'),m=d();function O(e,r,a,s,t){return m(e,r,a,h(e,a),s,t,h(e,t))}G.exports=O
-});var R=require('@stdlib/utils-define-nonenumerable-read-only-property/dist'),T=I(),w=d();R(T,"ndarray",w);module.exports=T;
 /** @license Apache-2.0 */
-//# sourceMappingURL=index.js.map
+
+'use strict';
+
+/**
+* Return the index of the first element in a strided array which is greater than a corresponding element in another strided array.
+*
+* @module @stdlib/blas-ext-base-gfirst-index-greater-than
+*
+* @example
+* var gfirstIndexGreaterThan = require( '@stdlib/blas-ext-base-gfirst-index-greater-than' );
+*
+* var x = [ 1.0, 2.0, 3.0, 4.0 ];
+* var y = [ 2.0, 2.0, 2.0, 2.0 ];
+*
+* var idx = gfirstIndexGreaterThan( x.length, x, 1, y, 1 );
+* // returns 2
+*
+* @example
+* var gfirstIndexGreaterThan = require( '@stdlib/blas-ext-base-gfirst-index-greater-than' );
+*
+* var x = [ 1.0, 2.0, 3.0, 4.0 ];
+* var y = [ 2.0, 2.0, 2.0, 2.0 ];
+*
+* var idx = gfirstIndexGreaterThan.ndarray( x.length, x, 1, 0, y, 1, 0 );
+* // returns 2
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils-define-nonenumerable-read-only-property/dist' );
+var main = require( './main.js' );
+var ndarray = require( './ndarray.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'ndarray', ndarray );
+
+
+// EXPORTS //
+
+module.exports = main;
